@@ -104,29 +104,36 @@ function App() {
     <div className="app">    
       <Header></Header>  
       <main className="main-content">
+        <div className="view-toggle-section">
+          <button 
+            className={`view-toggle ${activeView === 'books' ? 'active' : ''}`}
+            onClick={() => setActiveView('books')}
+          >
+            Book Listing
+          </button>
+          <button 
+            className={`view-toggle ${activeView === 'loans' ? 'active' : ''}`}
+            onClick={() => setActiveView('loans')}
+          >
+            Loan Management
+          </button>
+        </div>
+
         {activeView === 'books' ? (
           <>
-            <div className="books-header-section">
-              <button 
-                className="manage-loans-button"
-                onClick={() => setActiveView('loans')}
+            <div className="filter-section">
+              <label htmlFor="publisher-filter">filter by publisher:</label>
+              <select 
+                id="publisher-filter"
+                value={selectedPublisher} 
+                onChange={handlePublisherFilter}
+                className="publisher-filter"
               >
-                MANAGE LOANS
-              </button>
-              <div className="filter-section">
-                <label htmlFor="publisher-filter">filter by publisher:</label>
-                <select 
-                  id="publisher-filter"
-                  value={selectedPublisher} 
-                  onChange={handlePublisherFilter}
-                  className="publisher-filter"
-                >
-                  <option value="All">All</option>
-                  {getUniquePublishers().map(publisher => (
-                    <option key={publisher} value={publisher}>{publisher}</option>
-                  ))}
-                </select>
-              </div>
+                <option value="All">All</option>
+                {getUniquePublishers().map(publisher => (
+                  <option key={publisher} value={publisher}>{publisher}</option>
+                ))}
+              </select>
             </div>
             
             <div className="content">
@@ -155,7 +162,7 @@ function App() {
             </div>
           </>
         ) : (
-          <LoanManagement onQuit={() => setActiveView('books')} />
+          <LoanManagement />
         )}
         
         <Modal 

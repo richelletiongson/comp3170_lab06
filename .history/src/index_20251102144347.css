@@ -305,20 +305,19 @@ body {
 
 .manage-loans-button {
   padding: 0.8em 2em;
-  border: 2px solid #000;
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 1rem;
   background: #fff;
   color: #000;
   border: 2px solid #000;
+  cursor: pointer;
   transition: all 0.3s ease;
   font-weight: bold;
 }
 
 .manage-loans-button:hover {
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  stroke: none;
+  background: #f0f0f0;
 }
 
 .loan-header-section {
@@ -343,6 +342,7 @@ body {
   background: rgb(215, 17, 60);
   color: #fff;
   border: none;
+  cursor: pointer;
   transition: all 0.3s ease;
   font-weight: bold;
 }

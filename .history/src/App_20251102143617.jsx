@@ -104,59 +104,45 @@ function App() {
     <div className="app">    
       <Header></Header>  
       <main className="main-content">
-        {activeView === 'books' ? (
-          <>
-            <div className="books-header-section">
-              <button 
-                className="manage-loans-button"
-                onClick={() => setActiveView('loans')}
-              >
-                MANAGE LOANS
-              </button>
-              <div className="filter-section">
-                <label htmlFor="publisher-filter">filter by publisher:</label>
-                <select 
-                  id="publisher-filter"
-                  value={selectedPublisher} 
-                  onChange={handlePublisherFilter}
-                  className="publisher-filter"
-                >
-                  <option value="All">All</option>
-                  {getUniquePublishers().map(publisher => (
-                    <option key={publisher} value={publisher}>{publisher}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            
-            <div className="content">
-              <div className="new-button-column">
-                <button className="new" onClick={handleNewButtonClick}>NEW</button>
-                <button className="edit" onClick={handleEditButtonClick}>EDIT</button>
-                <button className="delete" onClick={handleDeleteBook}>DELETE</button>
-              </div>
-              
-              <div className="books-container">
-                {filteredBooks.map((book) => (
-                  <Book 
-                    key={book.id}
-                    id={book.id}
-                    title={book.title}
-                    author={book.author}
-                    publisher={book.publisher}
-                    price={book.price}
-                    image={book.image}
-                    url={book.url}
-                    selected={book.selected}
-                    onSelect={handleBookSelect}
-                  />
-                ))}
-              </div>
-            </div>
-          </>
-        ) : (
-          <LoanManagement onQuit={() => setActiveView('books')} />
-        )}
+        <div className="filter-section">
+          <label htmlFor="publisher-filter">filter by publisher:</label>
+          <select 
+            id="publisher-filter"
+            value={selectedPublisher} 
+            onChange={handlePublisherFilter}
+            className="publisher-filter"
+          >
+            <option value="All">All</option>
+            {getUniquePublishers().map(publisher => (
+              <option key={publisher} value={publisher}>{publisher}</option>
+            ))}
+          </select>
+        </div>
+        
+        <div className="content">
+          <div className="new-button-column">
+            <button className="new" onClick={handleNewButtonClick}>NEW</button>
+            <button className="edit" onClick={handleEditButtonClick}>EDIT</button>
+            <button className="delete" onClick={handleDeleteBook}>DELETE</button>
+          </div>
+          
+          <div className="books-container">
+            {filteredBooks.map((book) => (
+              <Book 
+                key={book.id}
+                id={book.id}
+                title={book.title}
+                author={book.author}
+                publisher={book.publisher}
+                price={book.price}
+                image={book.image}
+                url={book.url}
+                selected={book.selected}
+                onSelect={handleBookSelect}
+              />
+            ))}
+          </div>
+        </div>
         
         <Modal 
           isOpen={showAddBook} 
