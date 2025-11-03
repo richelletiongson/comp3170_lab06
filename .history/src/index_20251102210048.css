@@ -434,6 +434,9 @@ body {
   border: 1px solid #ddd;
   padding: 1rem;
   background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .loan-details {

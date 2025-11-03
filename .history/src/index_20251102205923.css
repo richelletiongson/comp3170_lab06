@@ -355,16 +355,9 @@ body {
   margin-bottom: 2rem;
 }
 
-.loan-form-container {
-  background: white;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  max-width: 600px;
-}
-
 .loan-form {
-  padding: 0;
+  max-width: 600px;
+  padding: 1rem;
 }
 
 .loan-form .form-control {
@@ -434,6 +427,9 @@ body {
   border: 1px solid #ddd;
   padding: 1rem;
   background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .loan-details {

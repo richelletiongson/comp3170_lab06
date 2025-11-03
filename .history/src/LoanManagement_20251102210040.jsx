@@ -112,6 +112,12 @@ function LoanManagement({ onQuit, availableBooks, loans, onAddLoan, onReturnLoan
                   <p><strong>Book:</strong> {loan.bookTitle}</p>
                   <p><strong>Due date:</strong> {formatDate(loan.dueDate)}</p>
                 </div>
+                <button 
+                  className="return-loan-button"
+                  onClick={() => onReturnLoan(loan.id)}
+                >
+                  Return
+                </button>
               </div>
             ))}
           </div>

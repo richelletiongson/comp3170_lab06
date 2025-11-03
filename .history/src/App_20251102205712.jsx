@@ -48,12 +48,6 @@ function App() {
     }
   }, [books, isInitialized]);
 
-  useEffect(() => {
-    if (isInitialized) {
-      localStorage.setItem('loans', JSON.stringify(loans));
-    }
-  }, [loans, isInitialized]);
-
 
   useEffect(() => {
     if (selectedPublisher === 'All') {
@@ -116,33 +110,6 @@ function App() {
     return [...new Set(publishers)];
   };
 
-  // Get available books (not currently on loan)
-  const getAvailableBooks = () => {
-    const loanedBookIds = loans.map(loan => loan.bookId);
-    return books.filter(book => !loanedBookIds.includes(book.id));
-  };
-
-  const handleAddLoan = (loanData) => {
-    // Calculate due date based on loan period (in weeks)
-    const today = new Date();
-    const dueDate = new Date(today);
-    dueDate.setDate(today.getDate() + (parseInt(loanData.loanPeriod) * 7));
-    
-    const newLoan = {
-      id: `loan_${Date.now()}_${Math.random()}`,
-      bookId: loanData.bookId,
-      borrower: loanData.borrower,
-      loanPeriod: loanData.loanPeriod,
-      dueDate: dueDate.toISOString().split('T')[0],
-      bookTitle: books.find(book => book.id === loanData.bookId)?.title || ''
-    };
-    setLoans(prev => [...prev, newLoan]);
-  };
-
-  const handleReturnLoan = (loanId) => {
-    setLoans(prev => prev.filter(loan => loan.id !== loanId));
-  };
-
   return (
     <div className="app">    
       <Header></Header>  
@@ -198,13 +165,7 @@ function App() {
             </div>
           </>
         ) : (
-          <LoanManagement 
-            onQuit={() => setActiveView('books')}
-            availableBooks={getAvailableBooks()}
-            loans={loans}
-            onAddLoan={handleAddLoan}
-            onReturnLoan={handleReturnLoan}
-          />
+          <LoanManagement onQuit={() => setActiveView('books')} />
         )}
         
         <Modal 

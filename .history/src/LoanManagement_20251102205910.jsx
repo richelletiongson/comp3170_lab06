@@ -44,53 +44,51 @@ function LoanManagement({ onQuit, availableBooks, loans, onAddLoan, onReturnLoan
       </div>
 
       <div className="loan-form-section">
-        <div className="loan-form-container">
-          <form onSubmit={handleSubmit} className="loan-form">
-            <div className="form-control">
-              <label htmlFor="borrower">Borrower</label>
-              <input
-                type="text"
-                id="borrower"
-                name="borrower"
-                placeholder="Borrower name..."
-                value={formData.borrower}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label htmlFor="bookId">Book:</label>
-              <select
-                id="bookId"
-                name="bookId"
-                value={formData.bookId}
-                onChange={handleInputChange}
-                required
-              >
-                <option value="">Select a book</option>
-                {availableBooks.map(book => (
-                  <option key={book.id} value={book.id}>
-                    {book.title} by {book.author}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="form-control">
-              <label htmlFor="loanPeriod">Loan period: (in weeks)</label>
-              <input
-                type="number"
-                id="loanPeriod"
-                name="loanPeriod"
-                min="1"
-                max="4"
-                value={formData.loanPeriod}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <button type="submit" className="btn primary">SUBMIT</button>
-          </form>
-        </div>
+        <form onSubmit={handleSubmit} className="loan-form">
+          <div className="form-control">
+            <label htmlFor="borrower">Borrower</label>
+            <input
+              type="text"
+              id="borrower"
+              name="borrower"
+              placeholder="Borrower name..."
+              value={formData.borrower}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="bookId">Book</label>
+            <select
+              id="bookId"
+              name="bookId"
+              value={formData.bookId}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="">Select a book...</option>
+              {availableBooks.map(book => (
+                <option key={book.id} value={book.id}>
+                  {book.title} by {book.author}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-control">
+            <label htmlFor="loanPeriod">Loan Period (weeks)</label>
+            <input
+              type="number"
+              id="loanPeriod"
+              name="loanPeriod"
+              min="1"
+              max="4"
+              value={formData.loanPeriod}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <button type="submit" className="btn primary">Create Loan</button>
+        </form>
       </div>
 
       <div className="available-books-message">
@@ -112,6 +110,12 @@ function LoanManagement({ onQuit, availableBooks, loans, onAddLoan, onReturnLoan
                   <p><strong>Book:</strong> {loan.bookTitle}</p>
                   <p><strong>Due date:</strong> {formatDate(loan.dueDate)}</p>
                 </div>
+                <button 
+                  className="return-loan-button"
+                  onClick={() => onReturnLoan(loan.id)}
+                >
+                  Return
+                </button>
               </div>
             ))}
           </div>
