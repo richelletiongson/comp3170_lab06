@@ -55,7 +55,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgb(20, 175, 175);
+  background-color: teal;
   color: white;
   text-align: center;
   padding: 0.5rem;
@@ -478,3 +478,17 @@ body {
   font-weight: bold;
 }
 
+.return-loan-button {
+  padding: 0.5em 1.5em;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1rem;
+  background: #87ceeb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.return-loan-button:hover {
+  background: #6bb6d6;
+}

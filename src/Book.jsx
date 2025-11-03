@@ -9,7 +9,12 @@ function Book(props) {
     };
 
     return (
-        <div className={`book${props.selected ? ' selected' : ''}`} onClick={handleCardClick}>
+        <div className={`book${props.selected ? ' selected' : ''}${props.isOnLoan ? ' on-loan' : ''}`} onClick={handleCardClick}>
+            {props.isOnLoan && (
+                <div className="book-loan-badge">
+                    <p>On loan</p>
+                </div>
+            )}
             <div className="book-image-container">
                 <img src={props.image} alt={props.title} className="book-image" />
             </div>
